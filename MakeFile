@@ -1,13 +1,14 @@
 all: count 
-	./count
 
 count: count.o
-	g++ count.o -o count 
+		g++ count.o -o count
 
 count.o: count.cc
+		g++ -c count.cc
 
 docs:
-    doxygen ./Doxyfile
-	
+    @doxygen
+    @open doxygen/html/index.html
+
 clean:
-	rm -rf *.o count
+		rm -rf *o count docs

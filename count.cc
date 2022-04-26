@@ -8,6 +8,7 @@
  * **********/
 
 #include <iostream> 
+#include <fstream>
 #include <iomanip> 
 
 using namespace std;
@@ -17,16 +18,23 @@ using namespace std;
  * Parameters: None
  * Purpose: to count the number of lines used in arguments
  *******************************************************/
-int countLine(string text){
+int countLine(string file){
     int count = 0;
-    int i = 0;
-    while(text[i++] != '\0'){
-        istream& getline(char* , int size);
+    string text;
+    ifstream openFile(file);
+
+    //checking to see if there is a file or not
+    if(!openFile){
+        cout << "file does not exist" << endl;
+        exit(0);
+    }
+    //count the number of lines
+    while(getline(openFile, text)){
         count++;
     }
+    openFile.close();
 
-    cout << count << " Lines" << endl;
-    return count;
+    return count; 
 }
 
 /*********************************************************
@@ -34,14 +42,22 @@ int countLine(string text){
  * Parameters: None
  * Purpose: to count the number of characters in an argument
  *******************************************************/
-int countChar(char *text){
+int countChar(string file){
     int count = 0;
-    int i = 0;
-    while(text[i++] != '\0'){
-        count++;
-    }
+    char character;
+    ifstream openFile(file);
 
-    cout << count << " Characters" << endl;
+    //checking to see if the file does not exist
+    if(!openFile){
+        cout << "FILE DOES NOT EXIST" << endl;
+        exit(0);
+    }
+    //while the file is open, count the characters
+    while(openFile >> character){
+        count ++;
+    }
+    openFile.close();
+
     return count;
 }
 
@@ -52,12 +68,9 @@ int countChar(char *text){
  * to print out the answers after compiling
  *******************************************************/
 int main(int argc, char** argv){
-    
-    for(int i = 0; i < argc; i++){
-        cout << setw(5) << i << setw(8) << countChar(argv[i]) << " " << argv[i] << endl;
-
-        cout << setw(5) << countLine(argv[i]) << endl;
-    }
+  
+    cout << countLine("file.txt") << " Lines" << endl;
+    cout << countChar("file.txt") << " Characters" << endl;
 
     return 0;
 }
