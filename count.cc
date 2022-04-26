@@ -68,6 +68,19 @@ int countChar(string file){
  * to print out the answers after compiling
  *******************************************************/
 int main(int argc, char** argv){
+    string file, text;
+    cout << "input file name: " << endl;
+    cin >> file;
+    ifstream openFile(file);
+
+    if(!openFile){
+        cout << "file does not exist" << endl;
+        if(!openFile){
+            cout << "Input a word: " << endl;
+
+        }
+        exit(0);
+    }
   
     cout << countLine("file.txt") << " Lines" << endl;
     cout << countChar("file.txt") << " Characters" << endl;
