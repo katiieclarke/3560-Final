@@ -75,10 +75,6 @@ int main(int argc, char** argv){
 
     if(!openFile){
         cout << "file does not exist" << endl;
-        if(!openFile){
-            cout << "Input a word: " << endl;
-
-        }
         exit(0);
     }
   
