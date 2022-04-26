@@ -1,0 +1,10 @@
+all: count 
+	./count
+
+count: count.o
+	g++ count.o -o count 
+
+count.o: count.cc
+
+clean:
+	rm -rf *.o count
